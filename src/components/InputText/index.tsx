@@ -21,6 +21,7 @@ function InputText(props: InputTextProps): ReactElement<InputTextProps> {
     formik,
     labelName,
     onChange,
+    ...rest
   } = props
 
   const hasError = () => formik.errors[fieldName] && formik.touched[fieldName]
@@ -31,6 +32,7 @@ function InputText(props: InputTextProps): ReactElement<InputTextProps> {
         {labelName || fieldName.toUpperCase()}
       </Label>
       <TextField
+        {...rest}
         type={type}
         error={hasError()}
         helperText={hasError() && formik.errors[fieldName]}

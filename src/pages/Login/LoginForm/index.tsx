@@ -1,8 +1,8 @@
 import { useFormik } from 'formik'
 import { ReactElement } from 'react'
-import InputText from '../../../components/inputs/InputText'
+import InputText from '../../../components/InputText'
 import { handlerLoginError, validationSchema } from './form'
-import { Container } from './styled'
+import { Container, LoginPageButton } from './styled'
 
 function LoginForm(): ReactElement {
   const formik = useFormik({
@@ -24,9 +24,13 @@ function LoginForm(): ReactElement {
         <InputText type="text" fieldName="email" formik={formik} />
 
         <InputText type="password" fieldName="Password" formik={formik} />
-        <button type="submit">Login</button>
-        <br />
-        <button type="submit">Login</button>
+        <LoginPageButton variant="contained" type="submit">
+          Login
+        </LoginPageButton>
+
+        <LoginPageButton color="success" variant="contained" type="submit">
+          Login
+        </LoginPageButton>
       </form>
     </Container>
   )
