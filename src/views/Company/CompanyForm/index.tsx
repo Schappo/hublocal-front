@@ -1,3 +1,4 @@
+import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import { useFormik } from 'formik'
 import { ReactElement, useEffect } from 'react'
 import { useAuth } from '../../../components/AuthUserContext'
@@ -9,10 +10,12 @@ import { initialValues, validationSchema } from './form'
 export type SignInFormProps = {
   onSubmitForm: boolean
   company?: Company
+  setOpenModal: (openModal: boolean) => void
 }
 
 function CompanyForm({
   onSubmitForm: setOnSubmitForm,
+  setOpenModal,
   company,
 }: SignInFormProps): ReactElement<SignInFormProps> {
   const { user } = useAuth()
@@ -35,6 +38,7 @@ function CompanyForm({
         // handleSignInErrors(resp, formik)
         console.log('error', resp.data)
       }
+      setOpenModal(false)
     },
   })
 
@@ -44,11 +48,17 @@ function CompanyForm({
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <InputText type="text" fieldName="name" formik={formik} />
-
-      <InputText type="text" fieldName="webSite" formik={formik} />
-
-      <InputText type="text" fieldName="cnpj" formik={formik} />
+      <Grid container justifyContent="center" spacing={2} columnSpacing={2}>
+        <Grid xs={12} sm={10}>
+          <InputText type="text" fieldName="name" formik={formik} />
+        </Grid>
+        <Grid xs={6} sm={5}>
+          <InputText type="text" fieldName="webSite" formik={formik} />
+        </Grid>
+        <Grid xs={6} sm={5}>
+          <InputText type="text" fieldName="cnpj" formik={formik} />
+        </Grid>
+      </Grid>
     </form>
   )
 }

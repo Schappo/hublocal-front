@@ -11,4 +11,14 @@ export type TranslationType = {
   isEmail: string,
   addCompany: string,
   noCompaniesFound: string,
+  fields: Fields
+}
+
+type Fields = {
+  name: string,
+  email: string,
+  password: string,
+  repeatPassword: string,
+  webSite: string,
+  cnpj: string,
 }

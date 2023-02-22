@@ -44,7 +44,11 @@ function CompanyView(): ReactElement {
             btnLabel="addCompany"
             setOnSubmitForm={() => setOnSubmitForm(!onSubmitForm)}
           >
-            <CompanyForm company={company} onSubmitForm={onSubmitForm} />
+            <CompanyForm
+              setOpenModal={setOpenModal}
+              company={company}
+              onSubmitForm={onSubmitForm}
+            />
           </FormModal>
           {isEmptyCompanies && handleEmptyCompanies()}
         </Box>

@@ -13,4 +13,13 @@ export const brTranslation: TranslationType = {
   isEmail: 'Email inválido!',
   noCompaniesFound: 'Nenhuma empresa cadastrada!',
   addCompany: 'Adicionar empresa',
+
+  fields: {
+    name: 'Nome',
+    email: 'Email',
+    password: 'Senha',
+    repeatPassword: 'Repetir senha',
+    cnpj: 'CNPJ',
+    webSite: 'Site',
+  }
 }

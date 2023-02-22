@@ -40,7 +40,7 @@ function InputText(props: InputTextProps): ReactElement<InputTextProps> {
   return (
     <Container>
       <Label hasError={hasError()}>
-        {labelName || fieldName.toUpperCase()}
+        {t(`fields.${labelName || fieldName}`)}
       </Label>
       <TextField
         {...rest}

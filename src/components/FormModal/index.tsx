@@ -38,8 +38,6 @@ function FormModal({
 }: FormModalProps): ReactElement<FormModalProps> {
   const [t] = useTranslation()
 
-  console.log('FormModal', btnLabel)
-
   return (
     <FormContainer>
       <Modal

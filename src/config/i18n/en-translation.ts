@@ -13,4 +13,13 @@ export const enTranslation: TranslationType = {
   isEmail: 'Invalid email!',
   noCompaniesFound: 'No companies found!',
   addCompany: 'Add company',
+
+  fields: {
+    name: 'Name',
+    email: 'Email',
+    password: 'Password',
+    repeatPassword: 'Confirm password',
+    cnpj: 'CNPJ',
+    webSite: 'Web site',
+  }
 }

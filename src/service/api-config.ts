@@ -18,7 +18,7 @@ export const setAuthorizationToken = (token: string) => {
 const homeUrl = '/login'
 
 hublocalApi.addResponseTransform((resp) => {
-  if ([401].includes((resp.status || 0))) {
+  if ([401].includes((resp.status || 0)) && !resp.config?.url?.includes('login')) {
     window.location.href = homeUrl
   }
 })
