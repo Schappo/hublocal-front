@@ -21,8 +21,10 @@
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
     "@mui/styled-engine-sc": "^5.11.9",
     "formik": "^2.2.9",
+    "i18next": "^22.4.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^12.1.5",
     "react-router-dom": "^6.8.1",
     "styled-components": "^5.3.6",
     "yup": "^1.0.0"
