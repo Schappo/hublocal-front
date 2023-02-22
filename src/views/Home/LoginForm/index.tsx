@@ -1,7 +1,7 @@
 import { useFormik } from 'formik'
 import { ReactElement } from 'react'
-import { useAuth } from '../../../../components/AuthUserContext'
-import InputText from '../../../../components/InputText'
+import { useAuth } from '../../../components/AuthUserContext'
+import InputText from '../../../components/InputText'
 import { SignInLoginButton, SignInLoginContainer } from '../styles'
 import { handleLoginErrors, initialValues, validationSchema } from './form'
 

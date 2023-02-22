@@ -1,7 +1,7 @@
 import { ApiErrorResponse } from 'apisauce'
 import * as yup from 'yup'
-import validationMessages from '../../../../config/yup-location.config'
-import { ErrorResponse } from '../../../../types'
+import validationMessages from '../../../config/yup-location.config'
+import { ErrorResponse } from '../../../types'
 
 export type SignInForm = {
   password: string,

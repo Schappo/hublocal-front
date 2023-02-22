@@ -1,9 +1,9 @@
-import { HomeContainer } from '../views/public/Home/styles'
+import Company from '../views/Company'
 
 export const authRoutes = [
   {
     path: '/company',
-    component: HomeContainer
+    component: Company
   }
 
 ]
