@@ -9,5 +9,6 @@ export type TranslationType = {
   invalidEmailOrPassword: string,
   isStrongPassword: string,
   isEmail: string,
-
+  addCompany: string,
+  noCompaniesFound: string,
 }
