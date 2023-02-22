@@ -3,9 +3,16 @@ import React, {
   createContext,
   ReactElement,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react'
+import {
+  getObject,
+  removeObject,
+  setObject,
+} from '../../helpers/storage.helper'
+import { setAuthorizationToken } from '../../service/api-config'
 import { signIn as serviceSignIn } from '../../service/auth'
 import { CredentialType, ErrorResponse, SignIn } from '../../types'
 import { User } from '../../types/entity.type'
@@ -29,17 +36,21 @@ const AuthContext = createContext({})
 function AuthProvider({
   children,
 }: AuthProviderProps): ReactElement<AuthProviderProps> {
-  const [user, setUser] = useState<User | null>(null)
-  const [isAuthenticatedUser, setIsAuthenticatedUser] = useState(false)
+  const [user, setUser] = useState<User | null>(getObject<User>('user'))
+  const [accessToken, setAccessToken] = useState<string | null>(
+    getObject<string>('accessToken'),
+  )
+  const [isAuthenticatedUser, setIsAuthenticatedUser] = useState(
+    Boolean(getObject('accessToken')),
+  )
 
-  const persistAuth = (isAuth: boolean, access_token: string) => {
-    localStorage.setItem('isAuthenticatedUser', JSON.stringify(isAuth))
-    localStorage.setItem('access_token', JSON.stringify(access_token))
+  const persistAuth = (isAuth: boolean, accessToken: string) => {
+    setObject('accessToken', accessToken)
     setIsAuthenticatedUser(isAuth)
   }
 
   const persistUser = (user: User) => {
-    localStorage.setItem('user', JSON.stringify(user))
+    setObject('user', JSON.stringify(user))
     setUser(user)
   }
 
@@ -50,13 +61,21 @@ function AuthProvider({
     if (resp.ok) {
       // if resp.ok is true, resp.data is not null
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const { access_token, user } = resp.data!
-      persistAuth(true, access_token)
+      const { accessToken, user } = resp.data!
+      persistAuth(true, accessToken)
       persistUser(user)
+      setAccessToken(accessToken)
+      setAuthorizationToken(accessToken)
     }
 
     return resp
   }
+
+  useEffect(() => {
+    if (accessToken) {
+      setAuthorizationToken(accessToken)
+    }
+  }, [accessToken])
 
   const logout = () => {
     clearLocalStorage()
@@ -65,9 +84,8 @@ function AuthProvider({
   }
 
   const clearLocalStorage = () => {
-    localStorage.removeItem('isAuthenticatedUser')
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('user')
+    removeObject('accessToken')
+    removeObject('user')
   }
 
   const memoizedValue = useMemo(

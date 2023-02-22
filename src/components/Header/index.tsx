@@ -9,7 +9,7 @@ type HeaderProps = {
 function Header(props: HeaderProps): ReactElement<HeaderProps> {
   return (
     <HeaderContainer>
-      <BusinessIcon />
+      <BusinessIcon sx={{ fontSize: 50 }} />
       <HeaderH1>{props.title}</HeaderH1>
     </HeaderContainer>
   )
