@@ -10,7 +10,7 @@ const enum FormControlEnum {
   SIGN_IN = 'sign-in',
 }
 
-function Login(): ReactElement {
+function Home(): ReactElement {
   const [formControl, setFormControl] = useState<FormControlEnum>(
     FormControlEnum.LOGIN,
   )
@@ -46,4 +46,4 @@ function Login(): ReactElement {
   )
 }
 
-export default Login
+export default Home

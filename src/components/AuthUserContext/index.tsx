@@ -16,6 +16,8 @@ type ContextType = {
   ) => Promise<ApiResponse<SignIn | ErrorResponse>>
   user?: User | null
   setUser?: (user: User | null) => void
+  isAuthenticatedUser: boolean
+  logout: () => void
 }
 
 type AuthProviderProps = {
