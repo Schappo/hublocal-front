@@ -6,5 +6,6 @@ export type TranslationType = {
   field_too_short: string,
   field_too_big: string,
   field_length: string,
+  invalid_email_or_password: string,
 
 }

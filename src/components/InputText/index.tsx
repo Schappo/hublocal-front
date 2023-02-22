@@ -28,8 +28,14 @@ function InputText(props: InputTextProps): ReactElement<InputTextProps> {
 
   const hasError = () => formik.errors[fieldName] && formik.touched[fieldName]
 
-  const handleI18nMessage = (error: any) =>
-    t(`${error.key}`, { param: error.values })
+  const handleI18nMessage = (
+    error: string | { key: string; value: string },
+  ) => {
+    if (typeof error === 'string') {
+      return t(error)
+    }
+    return t(`${error.key}`, { param: error.value })
+  }
 
   return (
     <Container>

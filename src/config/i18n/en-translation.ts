@@ -1,6 +1,7 @@
 import { TranslationType } from '../../types/translation.type'
 
 export const enTranslation: TranslationType = {
+  invalid_email_or_password: 'Invalid email or password!',
   invalid_email: 'Invalid email!',
   invalid_field: 'Invalid field!',
   invalid_format: 'Invalid format!',

@@ -1,6 +1,7 @@
 import { TranslationType } from '../../types/translation.type'
 
 export const brTranslation: TranslationType = {
+  invalid_email_or_password: 'Email ou senha inválidos!',
   invalid_email: 'Email inválido!',
   invalid_field: 'Campo inválido!',
   invalid_format: 'Formato inválido!',

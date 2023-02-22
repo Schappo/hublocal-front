@@ -1,5 +1,5 @@
 const invalidPasswordEmail = 'Email e/ou Senha incorretos!'
-import * as Yup from 'yup'
+import * as yup from 'yup'
 import validationMessages from '../../../config/yup-location.config'
 
 export type LoginForm = {
@@ -7,11 +7,11 @@ export type LoginForm = {
   email: string,
 }
 
-Yup.setLocale(validationMessages)
+yup.setLocale(validationMessages)
 
-export const validationSchema = Yup.object().shape({
-  password: Yup.string().required().min(3).max(100).default(''),
-  email: Yup.string().required().email().default(''),
+export const validationSchema = yup.object().shape({
+  password: yup.string().required().min(3).max(100).default('felipe@gmail.com'),
+  email: yup.string().required().email().default('felipe@gmail.com'),
 })
 
 export const handlerLoginError = (formik: any) => {
