@@ -13,9 +13,9 @@ export type SignInForm = {
 yup.setLocale(validationMessages)
 
 export const validationSchema = yup.object().shape({
-  password: yup.string().required().min(3).max(100).default('felipe@gmail.com'),
+  password: yup.string().required().min(3).max(100).default(''),
   repeatPassword: yup.string().oneOf([yup.ref('password'), ''], 'Passwords must match').required(),
-  email: yup.string().required().email().default('felipe@gmail.com'),
+  email: yup.string().required().email().default(''),
   name: yup.string().required().min(3).max(100).default('')
 })
 

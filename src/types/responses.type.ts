@@ -1,3 +1,5 @@
+import { User } from './entity.type'
+
 export type ErrorResponse = {
   message: string | Array<{ [key: string]: string }>,
   error: string,
@@ -5,5 +7,6 @@ export type ErrorResponse = {
 }
 
 export type SignIn = {
-  access_token: string
+  access_token: string,
+  user: User
 }

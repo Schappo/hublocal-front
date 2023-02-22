@@ -1,9 +1,9 @@
 import { useFormik } from 'formik'
 import { ReactElement } from 'react'
+import { useAuth } from '../../../../components/AuthUserContext'
 import InputText from '../../../../components/InputText'
-import { signIn } from '../../../../service/auth'
 import { SignInLoginButton, SignInLoginContainer } from '../styles'
-import { initialValues, validationSchema } from './form'
+import { handleLoginErrors, initialValues, validationSchema } from './form'
 
 export type LoginFormProps = {
   setFormControl: () => void
@@ -12,6 +12,8 @@ export type LoginFormProps = {
 function LoginForm({
   setFormControl,
 }: LoginFormProps): ReactElement<LoginFormProps> {
+  const { signIn } = useAuth()
+
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -20,10 +22,7 @@ function LoginForm({
     onSubmit: async (values, formik) => {
       const resp = await signIn(values)
       if (!resp.ok) {
-        if ([401, 403].includes(resp.status || 0)) {
-          formik.setFieldError('password', 'invalid_email_or_password')
-          formik.setFieldError('email', 'invalid_email_or_password')
-        }
+        handleLoginErrors(resp, formik)
       } else {
         console.log('resp', resp)
         alert('Usuário logado com sucesso')
