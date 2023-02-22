@@ -5,25 +5,39 @@ import { Container, Label } from './styled'
 type InputTextProps = {
   error?: boolean
   id?: string
-  value: string
-  name: string
+  fieldName: string
+  labelName?: string
   type: string
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  formik: any
 }
 
 function InputText(props: InputTextProps): ReactElement<InputTextProps> {
-  const { type, error = false, id, name, value, ...rest } = props
+  const {
+    type,
+    error = false,
+    id,
+    fieldName,
+    formik,
+    labelName,
+    onChange,
+  } = props
+
+  const hasError = () => formik.errors[fieldName] && formik.touched[fieldName]
 
   return (
     <Container>
-      <Label>{name}</Label>
+      <Label hasError={hasError()}>
+        {labelName || fieldName.toUpperCase()}
+      </Label>
       <TextField
-        {...rest}
         type={type}
-        error={error}
-        id={id || name}
-        name={name}
-        value={value}
+        error={hasError()}
+        helperText={hasError() && formik.errors[fieldName]}
+        id={id || fieldName}
+        name={fieldName}
+        value={formik.values[fieldName] || ''}
+        onChange={onChange || formik.handleChange}
       />
     </Container>
   )
