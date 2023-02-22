@@ -1,9 +1,9 @@
-import Company from '../views/Company'
+import CompanyView from '../views/Company'
 
 export const authRoutes = [
   {
     path: '/company',
-    component: Company
+    component: CompanyView
   }
 
 ]

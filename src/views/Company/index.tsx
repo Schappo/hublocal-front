@@ -5,11 +5,15 @@ import EmptyData from '../../components/EmptyData'
 import FormModal from '../../components/FormModal'
 import Header from '../../components/Header'
 import MainContainer from '../../components/MainContainer'
+import { Company } from '../../types/entity.type'
+import CompanyForm from './CompanyForm'
 import { useFetchCompanies } from './useFetchCompanies'
 
-function Company(): ReactElement {
+function CompanyView(): ReactElement {
   const { companies, loading, error } = useFetchCompanies()
   const [openModal, setOpenModal] = useState(false)
+  const [company, setCompany] = useState<Company>({} as Company)
+  const [onSubmitForm, setOnSubmitForm] = useState(false)
   const [t] = useTranslation()
   const isEmptyCompanies = companies.length === 0
 
@@ -36,9 +40,11 @@ function Company(): ReactElement {
           <FormModal
             openModal={openModal}
             setOpenModal={setOpenModal}
-            title={t('addCompany')}
+            title="addCompany"
+            btnLabel="addCompany"
+            setOnSubmitForm={() => setOnSubmitForm(!onSubmitForm)}
           >
-            <div>Teste</div>
+            <CompanyForm company={company} onSubmitForm={onSubmitForm} />
           </FormModal>
           {isEmptyCompanies && handleEmptyCompanies()}
         </Box>
@@ -47,4 +53,4 @@ function Company(): ReactElement {
   )
 }
 
-export default Company
+export default CompanyView

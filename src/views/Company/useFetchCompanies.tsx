@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { findAll } from '../../service/companies'
+import { findAllCompany } from '../../service/companies'
 import { Company } from '../../types/entity.type'
 
 export const useFetchCompanies = () => {
@@ -10,7 +10,7 @@ export const useFetchCompanies = () => {
   const fetchCompanies = useCallback(async () => {
     setLoading(true)
     try {
-      const resp = await findAll()
+      const resp = await findAllCompany()
       if (resp.ok && resp.data) setCompanies(resp.data)
     } catch (error) {
       setError(error)

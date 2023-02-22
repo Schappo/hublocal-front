@@ -1,14 +1,22 @@
 import { ReactElement } from 'react'
-import { FooterModalContainer } from './styles'
+import { useTranslation } from 'react-i18next'
+import { FooterButton, FooterModalContainer } from './styles'
 
 type FooterModalProps = {
-  title: string
+  btnLabel: string
+  onBtnClick: () => void
 }
 
-function FooterModal(props: FooterModalProps): ReactElement<FooterModalProps> {
+function FooterModal({
+  btnLabel,
+  onBtnClick,
+}: FooterModalProps): ReactElement<FooterModalProps> {
+  const [t] = useTranslation()
   return (
     <FooterModalContainer>
-      <div>Footer</div>
+      <FooterButton type="button" variant="contained" onClick={onBtnClick}>
+        {t(btnLabel)}
+      </FooterButton>
     </FooterModalContainer>
   )
 }

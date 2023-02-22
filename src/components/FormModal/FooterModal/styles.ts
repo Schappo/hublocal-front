@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Button from '../../Button'
 
 export const FooterModalContainer = styled.div`
   display: flex;
@@ -13,4 +14,11 @@ export const FooterModalContainer = styled.div`
   right: 0;
   border-top: 3px solid #e4e4e4;
   border-radius: 0px 0px 10px 10px;
+`
+
+export const FooterButton = styled(Button)`
+  && {
+    min-width: 100px;
+    min-height: 40px;
+  }
 `

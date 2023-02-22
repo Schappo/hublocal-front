@@ -9,7 +9,7 @@ export type Company = {
   name: string,
   webSite: string,
   cnpj: string,
-  locations: Location[],
+  locations?: Location[],
   userId: string,
 }
 

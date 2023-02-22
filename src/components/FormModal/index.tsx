@@ -1,5 +1,6 @@
 import { Box, Modal } from '@mui/material'
 import { ReactElement } from 'react'
+import { useTranslation } from 'react-i18next'
 import CloseIcon from './CloseIcon'
 import FooterModal from './FooterModal'
 import { ContentModal, FormContainer, HeaderModal, HeaderTitle } from './styles'
@@ -9,6 +10,8 @@ type FormModalProps = {
   openModal: boolean
   setOpenModal: (open: boolean) => void
   children: ReactElement
+  setOnSubmitForm: () => void
+  btnLabel: string
 }
 
 const style = {
@@ -30,7 +33,13 @@ function FormModal({
   setOpenModal,
   children,
   title,
+  setOnSubmitForm,
+  btnLabel,
 }: FormModalProps): ReactElement<FormModalProps> {
+  const [t] = useTranslation()
+
+  console.log('FormModal', btnLabel)
+
   return (
     <FormContainer>
       <Modal
@@ -41,11 +50,11 @@ function FormModal({
       >
         <Box sx={style}>
           <HeaderModal>
-            <HeaderTitle>{title}</HeaderTitle>
+            <HeaderTitle>{t(title)}</HeaderTitle>
             <CloseIcon color="#fff" onClick={() => setOpenModal(false)} />
           </HeaderModal>
           <ContentModal>{children}</ContentModal>
-          <FooterModal title="rtewst" />
+          <FooterModal onBtnClick={setOnSubmitForm} btnLabel={btnLabel} />
         </Box>
       </Modal>
     </FormContainer>

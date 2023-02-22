@@ -21,7 +21,7 @@ type ContextType = {
   signIn: (
     credentials: CredentialType,
   ) => Promise<ApiResponse<SignIn | ErrorResponse>>
-  user?: User | null
+  user: User
   setUser?: (user: User | null) => void
   isAuthenticatedUser: boolean
   logout: () => void
