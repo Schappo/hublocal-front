@@ -1,15 +1,23 @@
-import { Container } from '@mui/material'
 import { ReactElement } from 'react'
-import { H1 } from './styles'
+import { Container, EmptyDataButton, H1 } from './styles'
 
 type EmptyDataProps = {
   label: string
+  btnLabel: string
+  onclick: () => void
 }
 
-function EmptyData(props: EmptyDataProps): ReactElement<EmptyDataProps> {
+function EmptyData({
+  label,
+  btnLabel,
+  onclick,
+}: EmptyDataProps): ReactElement<EmptyDataProps> {
   return (
     <Container>
-      <H1>{props.label}</H1>
+      <H1>{label}</H1>
+      <EmptyDataButton type="button" onClick={onclick} variant="contained">
+        {btnLabel}
+      </EmptyDataButton>
     </Container>
   )
 }
