@@ -24,6 +24,9 @@ function LoginForm({
           formik.setFieldError('password', 'invalid_email_or_password')
           formik.setFieldError('email', 'invalid_email_or_password')
         }
+      } else {
+        console.log('resp', resp)
+        alert('Usuário logado com sucesso')
       }
     },
   })

@@ -9,8 +9,8 @@ export type LoginForm = {
 yup.setLocale(validationMessages)
 
 export const validationSchema = yup.object().shape({
-  password: yup.string().required().min(3).max(100).default('felipe@gmail.com'),
-  email: yup.string().required().email().default('felipe@gmail.com'),
+  password: yup.string().required().min(3).max(100).default('felipee2@gmail.com'),
+  email: yup.string().required().email().default('Pa$$word1'),
 })
 
 export const initialValues = validationSchema.getDefault()

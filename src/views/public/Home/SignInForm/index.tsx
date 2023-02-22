@@ -24,6 +24,9 @@ function SignInForm({
       const resp = await signUp(user)
       if (!resp.ok) {
         handleSignInErrors(resp, formik)
+      } else {
+        console.log('resp', resp)
+        alert('Usuário cadastrado com sucesso')
       }
     },
   })

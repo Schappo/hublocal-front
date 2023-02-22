@@ -14,7 +14,3 @@ export const signUp = async (user: User): Promise<ApiResponse<User, ErrorRespons
 export const signIn = async (credentials: CredentialType): Promise<ApiResponse<SignIn, ErrorResponse>> => {
   return await hublocalApi.post<SignIn, ErrorResponse>(`${BASE_ENDPOINT}/login`, credentials)
 }
-
-// export const getUser = async (): Promise<ApiResponse<User, ErrorResponse>> => {
-//   return await apiConfig.client.get(`${BASE_ENDPOINT}/profile`)
-// }
