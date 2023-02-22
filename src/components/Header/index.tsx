@@ -1,5 +1,6 @@
+import BusinessIcon from '@mui/icons-material/Business'
 import { ReactElement } from 'react'
-import { HeaderContainer } from './styles'
+import { HeaderContainer, HeaderH1 } from './styles'
 
 type HeaderProps = {
   title: string
@@ -8,7 +9,8 @@ type HeaderProps = {
 function Header(props: HeaderProps): ReactElement<HeaderProps> {
   return (
     <HeaderContainer>
-      <h1>{props.title}</h1>
+      <BusinessIcon />
+      <HeaderH1>{props.title}</HeaderH1>
     </HeaderContainer>
   )
 }
