@@ -1,3 +1,3 @@
-export * from './public/Login'
+export * from './public/Home'
 // export * from './public/SingIn'
 

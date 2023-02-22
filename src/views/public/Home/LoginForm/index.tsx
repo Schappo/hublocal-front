@@ -2,10 +2,16 @@ import { useFormik } from 'formik'
 import { ReactElement } from 'react'
 import InputText from '../../../../components/InputText'
 import { signIn } from '../../../../service/auth'
+import { SignInLoginButton, SignInLoginContainer } from '../styles'
 import { initialValues, validationSchema } from './form'
-import { Container, LoginPageButton } from './styled'
 
-function LoginForm(): ReactElement {
+export type LoginFormProps = {
+  setFormControl: () => void
+}
+
+function LoginForm({
+  setFormControl,
+}: LoginFormProps): ReactElement<LoginFormProps> {
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -23,25 +29,25 @@ function LoginForm(): ReactElement {
   })
 
   return (
-    <Container>
+    <SignInLoginContainer>
       <form onSubmit={formik.handleSubmit}>
         <InputText type="text" fieldName="email" formik={formik} />
 
         <InputText type="password" fieldName="password" formik={formik} />
-        <LoginPageButton variant="contained" type="submit">
+        <SignInLoginButton variant="contained" type="submit">
           Logar
-        </LoginPageButton>
+        </SignInLoginButton>
 
-        <LoginPageButton
+        <SignInLoginButton
           color="success"
           variant="contained"
           type="button"
-          onClick={() => console.log('test')}
+          onClick={setFormControl}
         >
           Criar Conta
-        </LoginPageButton>
+        </SignInLoginButton>
       </form>
-    </Container>
+    </SignInLoginContainer>
   )
 }
 
