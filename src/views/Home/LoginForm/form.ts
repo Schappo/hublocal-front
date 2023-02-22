@@ -1,7 +1,7 @@
 import { ApiResponse } from 'apisauce'
 import * as yup from 'yup'
-import validationMessages from '../../../../config/yup-location.config'
-import { ErrorResponse, SignIn } from '../../../../types'
+import validationMessages from '../../../config/yup-location.config'
+import { ErrorResponse, SignIn } from '../../../types'
 
 export type LoginForm = {
   password: string,
@@ -17,8 +17,8 @@ export const validationSchema = yup.object().shape({
 
 export const handleLoginErrors = async (resp: ApiResponse<SignIn | ErrorResponse>, formik: any) => {
   if ([401, 403].includes(resp.status || 0)) {
-    formik.setFieldError('password', 'invalid_email_or_password')
-    formik.setFieldError('email', 'invalid_email_or_password')
+    formik.setFieldError('password', 'invalidEmailOrPassword')
+    formik.setFieldError('email', 'invalidEmailOrPassword')
   }
 }
 

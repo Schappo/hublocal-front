@@ -21,9 +21,15 @@ export const validationSchema = yup.object().shape({
 
 export const handleSignInErrors = async (resp: ApiErrorResponse<ErrorResponse>, formik: any) => {
   if ([401, 403].includes(resp.status || 0)) {
-    formik.setFieldError('password', 'invalid_email_or_password')
-    formik.setFieldError('email', 'invalid_email_or_password')
-    formik.setFieldError('email', 'invalid_email_or_password')
+    formik.setFieldError('password', 'invalidEmailOrPassword')
+    formik.setFieldError('email', 'invalidEmailOrPassword')
+  }
+  if (resp.status === 400) {
+    (resp.data?.message as []).forEach((error: { property: string, constraints: Record<string, string> }) => {
+      Object.keys(error.constraints).forEach((message: string) => {
+        formik.setFieldError(error.property, message)
+      })
+    })
   }
 }
 

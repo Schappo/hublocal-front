@@ -1,5 +1,6 @@
 import { useFormik } from 'formik'
 import { ReactElement } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../../components/AuthUserContext'
 import InputText from '../../../components/InputText'
 import { SignInLoginButton, SignInLoginContainer } from '../styles'
@@ -13,6 +14,7 @@ function LoginForm({
   setFormControl,
 }: LoginFormProps): ReactElement<LoginFormProps> {
   const { signIn } = useAuth()
+  const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues,
@@ -22,11 +24,10 @@ function LoginForm({
     onSubmit: async (values, formik) => {
       const resp = await signIn(values)
       if (!resp.ok) {
-        handleLoginErrors(resp, formik)
-      } else {
-        console.log('resp', resp)
-        alert('Usuário logado com sucesso')
+        return handleLoginErrors(resp, formik)
       }
+
+      navigate('/company')
     },
   })
 

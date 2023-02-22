@@ -1,13 +1,13 @@
 import { TranslationType } from '../../types/translation.type'
 
 export const brTranslation: TranslationType = {
-  invalid_email_or_password: 'Email ou senha inválidos!',
-  invalid_email: 'Email inválido!',
-  invalid_field: 'Campo inválido!',
-  invalid_format: 'Formato inválido!',
-  field_required: 'Campo obrigatório!',
-  field_too_short: 'Campo muito curto! Tem que ter {{param}} ou mais caracteres!',
-  field_length: 'Campo deve ter {{param}} caracteres!',
-  field_too_big: 'Campo muito grande! Só pode ter {{param}} caracteres!',
-
+  invalidEmailOrPassword: 'Email ou senha inválidos!',
+  invalidEmail: 'Email inválido!',
+  invalidField: 'Campo inválido!',
+  invalidFormat: 'Formato inválido!',
+  fieldRequired: 'Campo obrigatório!',
+  fieldTooShort: 'Campo muito curto! Tem que ter {{param}} ou mais caracteres!',
+  fieldLength: 'Campo deve ter {{param}} caracteres!',
+  fieldTooBig: 'Campo muito grande! Só pode ter {{param}} caracteres!',
+  isStrongPassword: 'Senha muito fraca! Mínimo de 8 caracteres, uma letra maiúscula, uma minúscula, um número e um caracter especial!',
 }

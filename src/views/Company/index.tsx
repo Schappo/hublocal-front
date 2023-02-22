@@ -4,7 +4,7 @@ import Header from '../../components/Header'
 
 function Company(): ReactElement {
   return (
-    <Container>
+    <Container style={{ border: '1px solid red' }}>
       <Header title="Company" />
     </Container>
   )
