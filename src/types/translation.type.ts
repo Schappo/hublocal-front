@@ -8,5 +8,6 @@ export type TranslationType = {
   fieldLength: string,
   invalidEmailOrPassword: string,
   isStrongPassword: string,
+  isEmail: string,
 
 }

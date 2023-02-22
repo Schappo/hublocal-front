@@ -10,4 +10,5 @@ export const brTranslation: TranslationType = {
   fieldLength: 'Campo deve ter {{param}} caracteres!',
   fieldTooBig: 'Campo muito grande! Só pode ter {{param}} caracteres!',
   isStrongPassword: 'Senha muito fraca! Mínimo de 8 caracteres, uma letra maiúscula, uma minúscula, um número e um caracter especial!',
+  isEmail: 'Email inválido!',
 }

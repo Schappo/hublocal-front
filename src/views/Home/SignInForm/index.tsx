@@ -25,8 +25,7 @@ function SignInForm({
       if (!resp.ok) {
         handleSignInErrors(resp, formik)
       } else {
-        console.log('resp', resp)
-        alert('Usuário cadastrado com sucesso')
+        setFormControl()
       }
     },
   })
