@@ -1,6 +1,6 @@
 const invalidPasswordEmail = 'Email e/ou Senha incorretos!'
 import * as yup from 'yup'
-import validationMessages from '../../../config/yup-location.config'
+import validationMessages from '../../../../config/yup-location.config'
 
 export type LoginForm = {
   password: string,
