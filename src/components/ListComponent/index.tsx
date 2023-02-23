@@ -10,6 +10,8 @@ import {
 } from '@mui/material'
 import { ReactElement, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
+import { PaginationType } from '../../types'
 import CellActions from './CellActions'
 import { CellHeader, CellItem, CreateButton, ListContainer } from './style'
 
@@ -21,13 +23,8 @@ type ListComponentProps<T> = {
   btnCreateLabel: string
   headerTable: { label: string; width: string }[]
   cellFields: (keyof T)[]
-  pagination: {
-    skip: number
-    take: number
-    total: number
-    setSkip: (skip: number) => void
-    setTake: (take: number) => void
-  }
+  pagination: PaginationType
+  hideLocalActions?: boolean
 }
 
 function ListComponent<T>({
@@ -39,9 +36,11 @@ function ListComponent<T>({
   cellFields,
   pagination,
   setOpenDeleteModal,
+  hideLocalActions = true,
 }: ListComponentProps<T>): ReactElement<ListComponentProps<T>> {
   const [t] = useTranslation()
   const [page, setPage] = useState(0)
+  const navigate = useNavigate()
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -49,15 +48,13 @@ function ListComponent<T>({
   ) => {
     setPage(newPage)
     pagination.setSkip(newPage * pagination.take)
-    console.log('newPage', newPage)
   }
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     pagination.setTake(parseInt(event.target.value, 10))
-    console.log('pagination.take', pagination.take)
-    // setPage(0)
+    setPage(0)
   }
 
   const openCreateModal = () => {
@@ -119,6 +116,10 @@ function ListComponent<T>({
                   <CellActions
                     editAction={() => editAction(item)}
                     deleteAction={() => deleteAction(item)}
+                    addLocationAction={() =>
+                      navigate('location', { state: item })
+                    }
+                    hideLocalActions={hideLocalActions}
                   />
                 </TableRow>
               ))}

@@ -7,6 +7,7 @@ type DeleteModalProps<T> = {
   setOpenModal: (openModal: boolean) => void
   handleDelete: (item: T) => Promise<void>
   item: T
+  setItem: (item: T) => void
   model: string
 }
 
@@ -14,15 +15,20 @@ function DeleteModal<T>({
   openModal,
   setOpenModal,
   item,
+  setItem,
   handleDelete,
   model,
 }: DeleteModalProps<T>): ReactElement<DeleteModalProps<T>> {
   const [t] = useTranslation()
+  const handleCloseModal = () => {
+    setOpenModal(false)
+    setItem({} as T)
+  }
   return (
     <>
       <Modal
         openModal={openModal}
-        setOpenModal={setOpenModal}
+        setOpenModal={handleCloseModal}
         title="Delete"
         handleClickBtn={handleDelete}
         btnLabel={t('delete')}

@@ -1,45 +1,49 @@
 import { Box } from '@mui/material'
 import { ReactElement, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import DeleteModal from '../../components/DeleteModal'
 import EmptyData from '../../components/EmptyData'
 import Header from '../../components/Header'
 import ListComponent from '../../components/ListComponent'
 import MainContainer from '../../components/MainContainer'
-import { deleteCompany } from '../../service/companies'
-import { Company } from '../../types/entity.type'
-import CompanyModalForm from './CompanyModalForm'
-import { useFetchCompanies } from './useFetchCompanies'
+import { deleteLocation } from '../../service/locations'
+import { Location } from '../../types/entity.type'
+import LocationModalForm from './LocationModalForm'
+import { useFetchLocations } from './useFetchLocations'
+// import CompanyModalForm from './CompanyModalForm'
 
-function CompanyView(): ReactElement {
+function LocationView(): ReactElement {
   const [fetch, setFetch] = useState<boolean>(false)
-  const { companies, loading, error, take, skip, total, setSkip, setTake } =
-    useFetchCompanies(fetch)
+  const { state } = useLocation()
+
+  const { locations, loading, error, take, skip, total, setSkip, setTake } =
+    useFetchLocations(state.id, fetch)
   const [openModal, setOpenModal] = useState(false)
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
-  const [company, setCompany] = useState<Company>({} as Company)
+  const [location, setLocation] = useState<Location>({} as Location)
   const [t] = useTranslation()
-  const isEmptyCompanies = useMemo(() => companies.length === 0, [companies])
+  const isEmptyLocation = useMemo(() => locations.length === 0, [locations])
 
   const refreshData = () => {
     setFetch(!fetch)
   }
 
-  const handleDeleteCompany = async (id: string): Promise<any> => {
-    await deleteCompany(id)
+  const handleDeleteLocation = async (id: string): Promise<any> => {
+    await deleteLocation(id)
     setOpenDeleteModal(false)
-    setCompany({} as Company)
+    setLocation({} as Location)
     refreshData()
   }
 
   const handleCompanyComponent = () => {
     if (loading) return
 
-    if (isEmptyCompanies) {
+    if (isEmptyLocation) {
       return (
         <EmptyData
-          label={t('noCompaniesFound')}
-          btnLabel={t('addCompany')}
+          label={t('noLocationsFound')}
+          btnLabel={t('addLocation')}
           onclick={() => setOpenModal(true)}
         />
       )
@@ -47,16 +51,14 @@ function CompanyView(): ReactElement {
       return (
         <ListComponent
           pagination={{ take, skip, total, setSkip, setTake }}
-          setItem={setCompany}
-          btnCreateLabel="addCompany"
-          headerTable={[
-            { label: 'company', width: '60%' },
-            { label: 'qtdLocations', width: '20%' },
-          ]}
-          cellFields={['name', 'qtdLocations'] as (keyof Company)[]}
-          data={companies}
+          setItem={setLocation}
+          btnCreateLabel="addLocation"
+          headerTable={[{ label: 'location', width: '80%' }]}
+          cellFields={['name'] as (keyof Location)[]}
+          data={locations}
           setOpenModal={setOpenModal}
           setOpenDeleteModal={setOpenDeleteModal}
+          hideLocalActions={false}
         />
       )
     }
@@ -64,7 +66,7 @@ function CompanyView(): ReactElement {
 
   return (
     <div>
-      <Header title={t('company', { companyName: '' })} />
+      <Header title={t('company', { companyName: state.name })} />
       <MainContainer>
         <Box
           alignItems={'center'}
@@ -78,25 +80,26 @@ function CompanyView(): ReactElement {
         </Box>
       </MainContainer>
 
-      <CompanyModalForm
+      <LocationModalForm
         setOpenModal={setOpenModal}
         openModal={openModal}
-        company={company}
+        location={location}
+        companyId={state.id}
         refreshData={refreshData}
       />
 
       <DeleteModal
         openModal={openDeleteModal}
         setOpenModal={setOpenDeleteModal}
-        item={company}
-        setItem={setCompany}
-        model={t('company')}
-        handleDelete={async (company: Company) => {
-          await handleDeleteCompany(company.id!)
+        item={location}
+        setItem={setLocation}
+        model={t('location')}
+        handleDelete={async (location: Location) => {
+          await handleDeleteLocation(location.id!)
         }}
       />
     </div>
   )
 }
 
-export default CompanyView
+export default LocationView

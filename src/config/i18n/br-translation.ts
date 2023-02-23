@@ -12,14 +12,18 @@ export const brTranslation: TranslationType = {
   isStrongPassword: 'Senha muito fraca! Mínimo de 8 caracteres, uma letra maiúscula, uma minúscula, um número e um caracter especial!',
   isEmail: 'Email inválido!',
   noCompaniesFound: 'Nenhuma empresa cadastrada!',
+  noLocationsFound: 'Nenhum local cadastrado!',
   addCompany: 'Adicionar empresa',
-  company: 'Empresa',
+  company: 'Empresa {{ companyName }}',
   qtdLocations: 'Qtd de locais',
   actions: 'Ações',
   updateCompany: 'Atualizar empresa',
   cnpjExists: 'CNPJ já cadastrado!',
   IsCnpjConstraint: 'CNPJ inválido!',
   deleteMessage: 'Tem certeza que deseja deletar {{model}}?',
+  addLocation: 'Adicionar local',
+  location: 'Local',
+  updateLocation: 'Atualizar local',
 
   fields: {
     name: 'Nome',
@@ -28,5 +32,12 @@ export const brTranslation: TranslationType = {
     repeatPassword: 'Repetir senha',
     cnpj: 'CNPJ',
     webSite: 'Site',
+    postalCode: 'CEP',
+    street: 'Rua',
+    state: 'Estado',
+    city: 'Cidade',
+    number: 'Número',
+    district: 'Bairro',
+
   }
 }

@@ -12,8 +12,6 @@ export const findAllCompany = async (): Promise<ApiResponse<Company[], ErrorResp
 export const findAllCompanyPaginated = async (query?: Partial<Company & { skip: number, take: number }>): Promise<ApiResponse<PaginatedResponse<Company>, ErrorResponse>> => {
   let queryStr = !!query && Object.keys(query).map((key) => `${key}=${(query as Record<string, any>)[key]}`).join('&')
   queryStr = queryStr ? `?${queryStr}` : ''
-
-  console.log('queryStr', queryStr)
   return await hublocalApi.get<PaginatedResponse<Company>, ErrorResponse>(
     `${BASE_ENDPOINT}/paginated${queryStr}`
   )

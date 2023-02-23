@@ -12,14 +12,18 @@ export const enTranslation: TranslationType = {
   isStrongPassword: 'Password Must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one number and one symbol.',
   isEmail: 'Invalid email!',
   noCompaniesFound: 'No companies found!',
+  noLocationsFound: 'No Locations found!',
   addCompany: 'Add company',
-  company: 'Company',
+  company: 'Company {{ companyName }}',
   qtdLocations: 'Qtd of locations',
   actions: 'Actions',
   updateCompany: 'Update Company',
   cnpjExists: 'CNPJ already exists!',
   IsCnpjConstraint: 'Invalid CNPJ!',
   deleteMessage: 'Are you sure you want to delete a {{model}}?',
+  addLocation: 'Add location',
+  location: 'Location',
+  updateLocation: 'Update location',
 
   fields: {
     name: 'Name',
@@ -28,5 +32,11 @@ export const enTranslation: TranslationType = {
     repeatPassword: 'Confirm password',
     cnpj: 'CNPJ',
     webSite: 'Web site',
+    postalCode: 'Postal code',
+    street: 'Street',
+    state: 'State',
+    city: 'City',
+    number: 'Number',
+    district: 'District',
   }
 }

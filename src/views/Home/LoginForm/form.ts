@@ -11,8 +11,8 @@ export type LoginForm = {
 yup.setLocale(validationMessages)
 
 export const validationSchema = yup.object().shape({
-  password: yup.string().required().min(3).max(100).default('$Chapp01'),
-  email: yup.string().required().email().default('felipe@admin.com'),
+  password: yup.string().required().min(3).max(100).default(''),
+  email: yup.string().required().email().default(''),
 })
 
 export const handleLoginErrors = async (resp: ApiResponse<SignIn | ErrorResponse>, formik: any) => {

@@ -5,16 +5,19 @@ import { ErrorResponse } from '../../../types'
 
 yup.setLocale(validationMessages)
 
+const validateString = yup.string().required().min(3).max(100).default('')
+
 export const validationSchema = yup.object().shape({
-  name: yup.string().required().min(3).max(100).default(''),
-  webSite: yup.string().required().url().default(''),
-  cnpj: yup.string().required().min(14).max(14).default(''),
+  name: validateString,
+  postalCode: validateString,
+  street: validateString,
+  state: validateString,
+  city: validateString,
+  number: validateString,
+  district: validateString,
 })
 
-export const handleCompanyFormErrors = async (resp: ApiErrorResponse<ErrorResponse>, formik: any) => {
-  if (resp.status === 409) {
-    formik.setFieldError('cnpj', 'cnpjExists')
-  }
+export const handleLocationFormErrors = async (resp: ApiErrorResponse<ErrorResponse>, formik: any) => {
   (resp.data?.message as []).forEach((error: { property: string, constraints: Record<string, string> }) => {
     Object.keys(error.constraints).forEach((message: string) => {
       formik.setFieldError(error.property, message)

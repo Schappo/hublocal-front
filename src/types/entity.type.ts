@@ -29,5 +29,5 @@ export type Location = {
   city: string,
   number: string,
   district: string,
-  companyId: string,
+  companyId?: string,
 }

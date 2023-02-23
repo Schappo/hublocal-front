@@ -44,7 +44,6 @@ function CompanyModalForm({
 
     onSubmit: async (values, formik) => {
       const resp = await handleOnSubmitForm(values)
-      console.log(resp)
 
       if (!resp.ok) {
         handleCompanyFormErrors(resp, formik)
@@ -59,11 +58,9 @@ function CompanyModalForm({
 
   useEffect(() => {
     if (company?.id) {
-      formik.setValues({
-        name: company.name,
-        webSite: company.webSite,
-        cnpj: company.cnpj,
-      })
+      formik.setValues(company)
+    } else {
+      formik.resetForm()
     }
   }, [company])
 

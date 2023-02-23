@@ -19,7 +19,10 @@ export type TranslationType = {
   cnpjExists: string,
   IsCnpjConstraint: string,
   deleteMessage: string,
-
+  addLocation: string,
+  location: string,
+  updateLocation: string,
+  noLocationsFound: string,
 }
 
 type Fields = {
@@ -29,4 +32,10 @@ type Fields = {
   repeatPassword: string,
   webSite: string,
   cnpj: string,
+  postalCode: string,
+  street: string,
+  state: string,
+  city: string,
+  number: string,
+  district: string,
 }
