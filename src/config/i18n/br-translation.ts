@@ -17,6 +17,9 @@ export const brTranslation: TranslationType = {
   qtdLocations: 'Qtd de locais',
   actions: 'Ações',
   updateCompany: 'Atualizar empresa',
+  cnpjExists: 'CNPJ já cadastrado!',
+  IsCnpjConstraint: 'CNPJ inválido!',
+
 
   fields: {
     name: 'Nome',

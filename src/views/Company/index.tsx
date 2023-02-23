@@ -3,15 +3,16 @@ import { ReactElement, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import EmptyData from '../../components/EmptyData'
 import Header from '../../components/Header'
+import ListComponent from '../../components/ListComponent'
 import MainContainer from '../../components/MainContainer'
 import { Company } from '../../types/entity.type'
-import CompanyList from './CompanyList'
 import CompanyModalForm from './CompanyModalForm'
 import { useFetchCompanies } from './useFetchCompanies'
 
 function CompanyView(): ReactElement {
   const [fetch, setFetch] = useState<boolean>(false)
-  const { companies, loading, error } = useFetchCompanies(fetch)
+  const { companies, loading, error, take, skip, total } =
+    useFetchCompanies(fetch)
   const [openModal, setOpenModal] = useState(false)
   const [company, setCompany] = useState<Company>({} as Company)
   const [t] = useTranslation()
@@ -21,6 +22,8 @@ function CompanyView(): ReactElement {
     setFetch(!fetch)
   }
   const handleCompanyComponent = () => {
+    if (loading) return
+
     if (isEmptyCompanies) {
       return (
         <EmptyData
@@ -31,8 +34,15 @@ function CompanyView(): ReactElement {
       )
     } else {
       return (
-        <CompanyList
-          setCompany={setCompany}
+        <ListComponent
+          pagination={{ take, skip, total }}
+          setItem={setCompany}
+          btnCreateLabel="addCompany"
+          headerTable={[
+            { label: 'company', width: '60%' },
+            { label: 'qtdLocations', width: '20%' },
+          ]}
+          cellFields={['name', 'qtdLocations'] as (keyof Company)[]}
           data={companies}
           setOpenModal={setOpenModal}
         />

@@ -17,6 +17,9 @@ export const enTranslation: TranslationType = {
   qtdLocations: 'Qtd of locations',
   actions: 'Actions',
   updateCompany: 'Update Company',
+  cnpjExists: 'CNPJ already exists!',
+  IsCnpjConstraint: 'Invalid CNPJ!',
+
 
 
   fields: {

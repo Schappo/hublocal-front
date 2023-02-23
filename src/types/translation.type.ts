@@ -16,6 +16,9 @@ export type TranslationType = {
   qtdLocations: string,
   actions: string,
   updateCompany: string,
+  cnpjExists: string,
+  IsCnpjConstraint: string,
+
 
 }
 

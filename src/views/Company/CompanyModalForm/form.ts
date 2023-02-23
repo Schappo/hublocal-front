@@ -18,18 +18,15 @@ export const validationSchema = yup.object().shape({
   cnpj: yup.string().required().min(14).max(14).default(''),
 })
 
-export const handleCreateCompanyErrors = async (resp: ApiErrorResponse<ErrorResponse>, formik: any) => {
-  // if ([401, 403].includes(resp.status || 0)) {
-  //   formik.setFieldError('password', 'invalidEmailOrPassword')
-  //   formik.setFieldError('email', 'invalidEmailOrPassword')
-  // }
-  // if (resp.status === 400) {
-  //   (resp.data?.message as []).forEach((error: { property: string, constraints: Record<string, string> }) => {
-  //     Object.keys(error.constraints).forEach((message: string) => {
-  //       formik.setFieldError(error.property, message)
-  //     })
-  //   })
-  // }
+export const handleCompanyFormErrors = async (resp: ApiErrorResponse<ErrorResponse>, formik: any) => {
+  if (resp.status === 409) {
+    formik.setFieldError('cnpj', 'cnpjExists')
+  }
+  (resp.data?.message as []).forEach((error: { property: string, constraints: Record<string, string> }) => {
+    Object.keys(error.constraints).forEach((message: string) => {
+      formik.setFieldError(error.property, message)
+    })
+  })
 }
 
 export const initialValues = validationSchema.getDefault()

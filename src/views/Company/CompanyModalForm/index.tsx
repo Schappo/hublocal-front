@@ -6,7 +6,11 @@ import FormModal from '../../../components/FormModal'
 import InputText from '../../../components/InputText'
 import { createCompany, updateCompany } from '../../../service/companies'
 import { Company } from '../../../types/entity.type'
-import { initialValues, validationSchema } from './form'
+import {
+  handleCompanyFormErrors,
+  initialValues,
+  validationSchema,
+} from './form'
 
 export type CompanyModalFormProps = {
   company?: Company
@@ -25,7 +29,7 @@ function CompanyModalForm({
 
   const isUpdate = !!company?.id
 
-  const handleOnSubmitForm = async (values: any) => {
+  const handleOnSubmitForm = async (values: Company) => {
     if (isUpdate) {
       return await updateCompany(company!.id!, { ...values })
     } else {
@@ -40,19 +44,26 @@ function CompanyModalForm({
 
     onSubmit: async (values, formik) => {
       const resp = await handleOnSubmitForm(values)
+      console.log(resp)
+
       if (!resp.ok) {
-        // handleSignInErrors(resp, formik)
+        handleCompanyFormErrors(resp, formik)
         console.log('error', resp.data)
+      } else {
+        setOpenModal(false)
+        formik.resetForm()
+        refreshData()
       }
-      setOpenModal(false)
-      formik.resetForm()
-      refreshData()
     },
   })
 
   useEffect(() => {
     if (company?.id) {
-      formik.setValues(company)
+      formik.setValues({
+        name: company.name,
+        webSite: company.webSite,
+        cnpj: company.cnpj,
+      })
     }
   }, [company])
 

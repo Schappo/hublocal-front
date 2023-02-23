@@ -4,13 +4,20 @@ export type User = {
   email: string,
 }
 
+export type PaginatedResponse<T> = {
+  records: T[],
+  total: number,
+  skip?: number,
+  take?: number,
+}
+
 export type Company = {
   id?: string,
   name: string,
   webSite: string,
   cnpj: string,
-  locations?: Location[],
-  userId: string,
+  userId?: string,
+  qtyLocations?: number,
 }
 
 export type Location = {
