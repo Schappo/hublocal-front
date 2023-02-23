@@ -19,7 +19,7 @@ export const brTranslation: TranslationType = {
   updateCompany: 'Atualizar empresa',
   cnpjExists: 'CNPJ já cadastrado!',
   IsCnpjConstraint: 'CNPJ inválido!',
-
+  deleteMessage: 'Tem certeza que deseja deletar {{model}}?',
 
   fields: {
     name: 'Nome',

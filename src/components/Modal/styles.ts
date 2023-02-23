@@ -6,12 +6,12 @@ export const FormContainer = styled.div`
   align-items: center;
 `
 
-export const HeaderModal = styled.div`
+export const HeaderModal = styled.div<{ color?: string }>`
   display: flex;  
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  background-color: #0385FD;
+  background-color: ${props => props.color || '#0385FD'};
   border-radius: 10px 10px 0px 0px;
 `
 export const HeaderTitle = styled.h1`

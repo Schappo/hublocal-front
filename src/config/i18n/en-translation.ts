@@ -19,8 +19,7 @@ export const enTranslation: TranslationType = {
   updateCompany: 'Update Company',
   cnpjExists: 'CNPJ already exists!',
   IsCnpjConstraint: 'Invalid CNPJ!',
-
-
+  deleteMessage: 'Are you sure you want to delete a {{model}}?',
 
   fields: {
     name: 'Name',

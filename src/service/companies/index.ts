@@ -26,3 +26,7 @@ export const createCompany = async (company: Company): Promise<ApiResponse<Compa
 export const updateCompany = async (id: string, company: Company): Promise<ApiResponse<Company, ErrorResponse>> => {
   return await hublocalApi.put<Company, ErrorResponse>(`${BASE_ENDPOINT}/${id}`, company)
 }
+
+export const deleteCompany = async (id: string): Promise<ApiResponse<Company, ErrorResponse>> => {
+  return await hublocalApi.delete<Company, ErrorResponse>(`${BASE_ENDPOINT}/${id}`)
+}

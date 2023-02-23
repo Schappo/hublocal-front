@@ -1,4 +1,4 @@
-import { Box, Modal } from '@mui/material'
+import { Box, Modal as ModalMUI } from '@mui/material'
 import { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import CloseIcon from './CloseIcon'
@@ -11,49 +11,54 @@ import {
   HeaderTitle,
 } from './styles'
 
-type FormModalProps = {
+type ModalProps<T> = {
   title: string
   openModal: boolean
   setOpenModal: (open: boolean) => void
   children: ReactElement
   btnLabel: string
-  formik: any
+  handleClickBtn: (item: T) => Promise<any>
+  color?: string
+  colorBtn?: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning'
+  item: T
 }
 
-function FormModal({
+function Modal<T>({
   openModal,
   setOpenModal,
   children,
   title,
   btnLabel,
-  formik,
-}: FormModalProps): ReactElement<FormModalProps> {
+  item,
+  handleClickBtn,
+  color,
+  colorBtn,
+}: ModalProps<T>): ReactElement<ModalProps<T>> {
   const [t] = useTranslation()
 
   return (
     <FormContainer>
-      <Modal
+      <ModalMUI
         open={openModal}
         onClose={() => setOpenModal(false)}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
         <Box sx={boxStyle}>
-          <HeaderModal>
+          <HeaderModal color={color}>
             <HeaderTitle>{t(title)}</HeaderTitle>
             <CloseIcon color="#fff" onClick={() => setOpenModal(false)} />
           </HeaderModal>
           <ContentModal>{children}</ContentModal>
           <FooterModal
-            onBtnClick={() => {
-              formik.submitForm()
-            }}
+            color={colorBtn}
+            onBtnClick={async () => await handleClickBtn(item)}
             btnLabel={btnLabel}
           />
         </Box>
-      </Modal>
+      </ModalMUI>
     </FormContainer>
   )
 }
 
-export default FormModal
+export default Modal

@@ -4,9 +4,9 @@ import { Company } from '../../types/entity.type'
 
 export const useFetchCompanies = (refetch: boolean) => {
   const [companies, setCompanies] = useState<Company[]>([])
-  const [total, setTotal] = useState<number | undefined>()
-  const [skip, setSkip] = useState<number | undefined>(0)
-  const [take, setTake] = useState<number | undefined>(10)
+  const [total, setTotal] = useState<number>(0)
+  const [skip, setSkip] = useState<number>(0)
+  const [take, setTake] = useState<number>(10)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<unknown>(null)
 
@@ -20,19 +20,20 @@ export const useFetchCompanies = (refetch: boolean) => {
       if (resp.ok && resp.data) {
         setCompanies(resp.data.records)
         setTotal(resp.data.total)
-        setSkip(resp.data.skip)
-        setTake(resp.data.take)
+        setSkip(resp.data.skip || 0)
+        setTake(resp.data.take || 10)
       }
     } catch (error) {
       setError(error)
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [take, skip])
 
   useEffect(() => {
+    console.log(take, skip)
     fetchCompanies()
-  }, [fetchCompanies, refetch])
+  }, [fetchCompanies, refetch, take, skip])
 
   return { companies, loading, error, take, skip, total, setSkip, setTake }
 }

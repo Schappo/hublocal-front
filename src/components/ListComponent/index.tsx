@@ -17,10 +17,17 @@ type ListComponentProps<T> = {
   data: T[]
   setItem: (item: T) => void
   setOpenModal: (openModal: boolean) => void
+  setOpenDeleteModal: (openModal: boolean) => void
   btnCreateLabel: string
   headerTable: { label: string; width: string }[]
   cellFields: (keyof T)[]
-  pagination: { skip?: number; take?: number; total?: number }
+  pagination: {
+    skip: number
+    take: number
+    total: number
+    setSkip: (skip: number) => void
+    setTake: (take: number) => void
+  }
 }
 
 function ListComponent<T>({
@@ -31,27 +38,26 @@ function ListComponent<T>({
   headerTable,
   cellFields,
   pagination,
+  setOpenDeleteModal,
 }: ListComponentProps<T>): ReactElement<ListComponentProps<T>> {
   const [t] = useTranslation()
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(pagination.take)
-
-  // Avoid a layout jump when reaching the last page with empty rows.
-  // const emptyRows =
-  //   page > 0 ? Math.max(0, (1 + page) * rowsPerPage - pagination.total) : 0
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number,
   ) => {
     setPage(newPage)
+    pagination.setSkip(newPage * pagination.take)
+    console.log('newPage', newPage)
   }
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 10))
-    setPage(0)
+    pagination.setTake(parseInt(event.target.value, 10))
+    console.log('pagination.take', pagination.take)
+    // setPage(0)
   }
 
   const openCreateModal = () => {
@@ -62,6 +68,11 @@ function ListComponent<T>({
   const editAction = (item: T) => {
     setItem(item)
     setOpenModal(true)
+  }
+
+  const deleteAction = async (item: T) => {
+    setItem(item)
+    setOpenDeleteModal(true)
   }
 
   return (
@@ -105,7 +116,10 @@ function ListComponent<T>({
                       {item[field] as string}
                     </CellItem>
                   ))}
-                  <CellActions editAction={() => editAction(item)} />
+                  <CellActions
+                    editAction={() => editAction(item)}
+                    deleteAction={() => deleteAction(item)}
+                  />
                 </TableRow>
               ))}
             </TableBody>
@@ -115,13 +129,14 @@ function ListComponent<T>({
                   rowsPerPageOptions={[5, 10, 25]}
                   colSpan={3}
                   count={pagination.total || 0}
-                  rowsPerPage={rowsPerPage || 10}
-                  page={page}
+                  rowsPerPage={pagination.take || 5}
+                  page={page || 0}
                   SelectProps={{
                     inputProps: {
-                      'aria-label': 'rows per page',
+                      'aria-label': `${t('rowsPerPage')}`,
                     },
                     native: true,
+                    label: `${t('rowsPerPage')}`,
                   }}
                   onPageChange={handleChangePage}
                   onRowsPerPageChange={handleChangeRowsPerPage}

@@ -2,8 +2,8 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import { useFormik } from 'formik'
 import { ReactElement, useEffect } from 'react'
 import { useAuth } from '../../../components/AuthUserContext'
-import FormModal from '../../../components/FormModal'
 import InputText from '../../../components/InputText'
+import { default as Modal } from '../../../components/Modal'
 import { createCompany, updateCompany } from '../../../service/companies'
 import { Company } from '../../../types/entity.type'
 import {
@@ -73,12 +73,13 @@ function CompanyModalForm({
   }
 
   return (
-    <FormModal
+    <Modal
+      item={company}
       openModal={openModal}
       setOpenModal={handleCloseModal}
       title={isUpdate ? 'updateCompany' : 'addCompany'}
       btnLabel={isUpdate ? 'updateCompany' : 'addCompany'}
-      formik={formik}
+      handleClickBtn={() => formik.submitForm()}
     >
       <form onSubmit={formik.handleSubmit}>
         <Grid container justifyContent="center" spacing={2} columnSpacing={2}>
@@ -93,7 +94,7 @@ function CompanyModalForm({
           </Grid>
         </Grid>
       </form>
-    </FormModal>
+    </Modal>
   )
 }
 

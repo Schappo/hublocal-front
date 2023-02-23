@@ -18,7 +18,7 @@ export type TranslationType = {
   updateCompany: string,
   cnpjExists: string,
   IsCnpjConstraint: string,
-
+  deleteMessage: string,
 
 }
 
