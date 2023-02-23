@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { findAllCompany } from '../../service/companies'
 import { Company } from '../../types/entity.type'
 
-export const useFetchCompanies = () => {
+export const useFetchCompanies = (refetch: boolean) => {
   const [companies, setCompanies] = useState<Company[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<unknown>(null)
@@ -21,7 +21,7 @@ export const useFetchCompanies = () => {
 
   useEffect(() => {
     fetchCompanies()
-  }, [fetchCompanies])
+  }, [fetchCompanies, refetch])
 
   return { companies, loading, error }
 }

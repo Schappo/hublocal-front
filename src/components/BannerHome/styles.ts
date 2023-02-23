@@ -40,7 +40,7 @@ export const BannerBottom = styled.div`
 export const BannerBottomH1 = styled.h1`
   font-style: normal;
   font-weight: 700;
-  font-size: 48px;
+  font-size: 2.3rem;
 
   color: #FFFFFF;
   margin: 20px 0;
@@ -49,7 +49,7 @@ export const BannerBottomH1 = styled.h1`
 export const BannerBottomH6 = styled.h6`
   font-style: normal;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 1.4rem;
   margin: 20px 0;
   text-align: center;
   color: #FFFFFF;

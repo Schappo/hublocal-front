@@ -28,3 +28,17 @@ export const ContentModal = styled.div`
   flex-grow: 1;
   margin-bottom: 80px;
 `
+
+export const boxStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  display: 'flex',
+  flexDirection: 'column',
+  transform: 'translate(-50%, -50%)',
+  minWidth: '30%',
+  minHeight: '50%',
+  bgcolor: 'background.paper',
+  borderRadius: '10px',
+  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+}

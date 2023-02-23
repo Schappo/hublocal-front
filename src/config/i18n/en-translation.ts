@@ -13,6 +13,11 @@ export const enTranslation: TranslationType = {
   isEmail: 'Invalid email!',
   noCompaniesFound: 'No companies found!',
   addCompany: 'Add company',
+  company: 'Company',
+  qtdLocations: 'Qtd of locations',
+  actions: 'Actions',
+  updateCompany: 'Update Company',
+
 
   fields: {
     name: 'Name',

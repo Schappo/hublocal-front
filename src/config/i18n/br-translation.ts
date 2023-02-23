@@ -13,6 +13,10 @@ export const brTranslation: TranslationType = {
   isEmail: 'Email inválido!',
   noCompaniesFound: 'Nenhuma empresa cadastrada!',
   addCompany: 'Adicionar empresa',
+  company: 'Empresa',
+  qtdLocations: 'Qtd de locais',
+  actions: 'Ações',
+  updateCompany: 'Atualizar empresa',
 
   fields: {
     name: 'Nome',

@@ -11,7 +11,12 @@ export type TranslationType = {
   isEmail: string,
   addCompany: string,
   noCompaniesFound: string,
-  fields: Fields
+  fields: Fields,
+  company: string,
+  qtdLocations: string,
+  actions: string,
+  updateCompany: string,
+
 }
 
 type Fields = {

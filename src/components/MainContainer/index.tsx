@@ -2,7 +2,6 @@ import { ReactElement } from 'react'
 import { Container } from './styles'
 
 type MainContainerProps = {
-  title: string
   children: ReactElement
 }
 

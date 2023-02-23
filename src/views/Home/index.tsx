@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react'
+import { ReactElement, useCallback, useEffect, useState } from 'react'
 import LogoImg from '../../assets/img/logo.png'
 import BannerHome from '../../components/BannerHome'
 import LoginForm from './LoginForm'
@@ -15,7 +15,7 @@ function Home(): ReactElement {
     FormControlEnum.LOGIN,
   )
 
-  const handleFormChange = () => {
+  const handleFormChange = useCallback(() => {
     if (formControl === FormControlEnum.SIGN_IN) {
       return (
         <SignInForm
@@ -29,7 +29,7 @@ function Home(): ReactElement {
         />
       )
     }
-  }
+  }, [formControl])
 
   useEffect(() => {
     handleFormChange()
