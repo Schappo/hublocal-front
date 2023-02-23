@@ -17,6 +17,7 @@ export const useFetchCompanies = (refetch: boolean) => {
         take,
         skip,
       })
+      console.log({ data: resp.data, skip, take })
       if (resp.ok && resp.data) {
         setCompanies(resp.data.records)
         setTotal(resp.data.total)

@@ -83,10 +83,11 @@ function ListComponent<T>({
           {t(btnCreateLabel)}
         </CreateButton>
         <TableContainer
+          sx={{ maxHeight: 700 }}
           style={{ display: 'flex', flexGrow: 1 }}
           component={Paper}
         >
-          <Table sx={{ width: '100%' }}>
+          <Table stickyHeader sx={{ width: '100%' }}>
             <TableHead>
               <TableRow
                 style={{
