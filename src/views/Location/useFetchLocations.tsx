@@ -7,7 +7,7 @@ export const useFetchLocations = (companyId: string, refetch: boolean) => {
   const [total, setTotal] = useState<number>(0)
   const [skip, setSkip] = useState<number>(0)
   const [take, setTake] = useState<number>(10)
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<unknown>(null)
 
   const fetchLocations = useCallback(async () => {

@@ -24,6 +24,7 @@ export const brTranslation: TranslationType = {
   addLocation: 'Adicionar local',
   location: 'Local',
   updateLocation: 'Atualizar local',
+  companyLabel: 'Empresa',
 
   fields: {
     name: 'Nome',

@@ -50,7 +50,7 @@ function CompanyView(): ReactElement {
           setItem={setCompany}
           btnCreateLabel="addCompany"
           headerTable={[
-            { label: 'company', width: '60%' },
+            { label: 'companyLabel', width: '60%' },
             { label: 'qtdLocations', width: '20%' },
           ]}
           cellFields={['name', 'qtdLocations'] as (keyof Company)[]}
@@ -90,7 +90,7 @@ function CompanyView(): ReactElement {
         setOpenModal={setOpenDeleteModal}
         item={company}
         setItem={setCompany}
-        model={t('company')}
+        model={t('companyLabel')}
         handleDelete={async (company: Company) => {
           await handleDeleteCompany(company.id!)
         }}

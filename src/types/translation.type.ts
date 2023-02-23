@@ -23,6 +23,7 @@ export type TranslationType = {
   location: string,
   updateLocation: string,
   noLocationsFound: string,
+  companyLabel: string,
 }
 
 type Fields = {

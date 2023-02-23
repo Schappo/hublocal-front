@@ -24,6 +24,7 @@ export const enTranslation: TranslationType = {
   addLocation: 'Add location',
   location: 'Location',
   updateLocation: 'Update location',
+  companyLabel: 'Company',
 
   fields: {
     name: 'Name',
